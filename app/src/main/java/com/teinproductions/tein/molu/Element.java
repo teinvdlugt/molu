@@ -126,7 +126,7 @@ public enum Element {
     private Double mass;
     private int atomicNumber;
 
-    public static final Double nA = 6.02214 * (10 ^ 23);
+    public static final Double nA = 602214000000000000000000.0;
 
     Element(String name, String abbreviation, Double mass, Integer atomicNumber) {
         this.name = name;
