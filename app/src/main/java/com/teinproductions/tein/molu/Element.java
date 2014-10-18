@@ -136,12 +136,20 @@ public enum Element {
     }
 
 
-    public Double calculateWhenMolGiven(Double givenMol){
+    public Double calculateGramWhenMolGiven(Double givenMol){
         return givenMol * this.mass;
     }
 
-    public Double calculateWhenGramGiven(Double givenGram){
+    public Integer calculateParticlesWhenMolGiven(Double givenMol){
+        return (int) (givenMol * nA);
+    }
+
+    public Double calculateMolWhenGramGiven(Double givenGram){
         return givenGram / this.mass;
+    }
+
+    public Double calculateMolWhenParticlesGiven(Integer givenParticles){
+        return givenParticles / nA;
     }
 
     public static Element findElementByAbbreviation(String abbreviation){

@@ -137,5 +137,6 @@
     <string name="ununseptium">Ununseptium</string>
     <string name="ununoctium">Ununoctium</string>
     <string name="Element_info_activity_label">Elements</string>
+    <string name="particles_text_view">Particles:</string>
 
 </resources>

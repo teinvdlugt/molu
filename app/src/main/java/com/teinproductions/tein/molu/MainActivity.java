@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    EditText elementEditText,molEditText,gramEditText;
+    EditText elementEditText,molEditText,gramEditText,particlesEditText;
     TextView molarMassTextView;
 
     final int nA = (int) 6.02214 * (10 ^ 23);
@@ -37,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
         molEditText = (EditText) findViewById(R.id.mol_edit_text);
         molarMassTextView = (TextView) findViewById(R.id.mass__amount_text_view);
         gramEditText = (EditText) findViewById(R.id.gram_edit_text);
+        particlesEditText = (EditText) findViewById(R.id.particles_edit_text);
 
 
     }
@@ -95,38 +96,40 @@ public class MainActivity extends ActionBarActivity {
 
             molarMassTextView.setText(givenElement.getMass().toString());
 
-            // If in both EditTexts a value is given:
-            if(!String.valueOf(molEditText.getText()).equals("") && !String.valueOf(gramEditText.getText()).equals("")) {
-
-                // Ignore the given value in gramEditText and overwrite that value with the value calculated using
-                // the value in molEditText.
+            // If a value is given in molEditText:
+            if(!String.valueOf(molEditText.getText()).equals("")) {
 
                 Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
 
-                Double calculatedGram = givenElement.calculateWhenMolGiven(givenMol);
+                Double calculatedGram = givenElement.calculateGramWhenMolGiven(givenMol);
+                Integer calculatedParticles = givenElement.calculateParticlesWhenMolGiven(givenMol);
 
                 gramEditText.setText(calculatedGram.toString());
+                particlesEditText.setText(calculatedParticles.toString());
             }
 
-
-            // If a value is given only in molEditText:
-            else if (!String.valueOf(molEditText.getText()).equals("")) {
-
-                Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
-
-                Double calculatedGram = givenElement.calculateWhenMolGiven(givenMol);
-
-                gramEditText.setText(calculatedGram.toString());
-
-
-            // If a value is given only in gramEditText:
-            } else if (!String.valueOf(gramEditText.getText()).equals("")) {
+            // If a value is given in gramEditText:
+            else if (!String.valueOf(gramEditText.getText()).equals("")) {
 
                 Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
 
-                Double calculatedMol = givenElement.calculateWhenGramGiven(givenGram);
+                Double calculatedMol = givenElement.calculateMolWhenGramGiven(givenGram);
+                Integer calculatedParticles = givenElement.calculateParticlesWhenMolGiven(calculatedMol);
 
                 molEditText.setText(calculatedMol.toString());
+                particlesEditText.setText(calculatedParticles.toString());
+            }
+
+            // If a value is given in particlesEditText:
+            else if (!String.valueOf(particlesEditText.getText()).equals("")){
+
+                Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
+
+                Double calculatedMol = givenElement.calculateMolWhenParticlesGiven(givenParticles);
+                Double calculatedGram = givenElement.calculateGramWhenMolGiven(calculatedMol);
+
+                molEditText.setText(calculatedMol.toString());
+                gramEditText.setText(calculatedGram.toString());
             }
         }
     }
