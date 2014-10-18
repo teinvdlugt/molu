@@ -133,7 +133,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void startElementInfoActivity(){
 
-        // TODO start an information activity which show a hole bunch of information about all the elements in the world an the universe
+        Intent intent  = new Intent(this,ElementInfoActivity.class);
+        startActivity(intent);
 
     }
 

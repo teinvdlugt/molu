@@ -18,6 +18,7 @@ public class ElementInfoActivity extends ActionBarActivity{
 
         listView = (ListView) findViewById(R.id.element_info_list_view);
 
+        // initializing the String[] elementNames
         String[] elementNames = new String[Element.values().length];
         for(int i = 0; i < Element.values().length; i++){
             elementNames[i] = Element.values()[i].getName();

@@ -19,9 +19,9 @@ public class ElementListAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
-        LayoutInflater theInlater = LayoutInflater.from(getContext());
+        LayoutInflater theInflater = LayoutInflater.from(getContext());
 
-        View theView = theInlater.inflate(R.layout.element_info_list_layout, parent, false);
+        View theView = theInflater.inflate(R.layout.element_info_list_layout, parent, false);
 
         TextView elementNameTextView = (TextView) theView.findViewById(R.id.element_name_text_view);
         TextView atomicNumberTextView = (TextView) theView.findViewById(R.id.atomic_number_text_view);
