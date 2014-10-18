@@ -94,6 +94,7 @@ public class MainActivity extends ActionBarActivity {
         // Als het element goed is:
         } else {
 
+            elementEditText.setText(givenElement.getName());
             molarMassTextView.setText(givenElement.getMass().toString());
 
             // If a value is given in molEditText:
