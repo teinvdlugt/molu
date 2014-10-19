@@ -152,18 +152,25 @@ public enum Element {
         return givenParticles / nA;
     }
 
+
     public static Element findElementByAbbreviation(String abbreviation){
-
         for(Element currentElement : Element.values()){
-
             if(abbreviation.equals(currentElement.getAbbreviation())){
                 return currentElement;
             }
-
         }
 
         return null;
+    }
 
+    public static Element findElementByName(String name){
+        for(Element currentElement : Element.values()){
+            if(currentElement.getName().equals(name)) {
+                return currentElement;
+            }
+        }
+
+        return null;
     }
 
 

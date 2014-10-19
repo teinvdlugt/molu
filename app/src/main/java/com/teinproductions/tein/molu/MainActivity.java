@@ -17,8 +17,6 @@ public class MainActivity extends ActionBarActivity {
     EditText elementEditText,molEditText,gramEditText,particlesEditText;
     TextView molarMassTextView;
 
-    final int nA = (int) 6.02214 * (10 ^ 23);
-
     // Dit doe ik om de context en daarmee de Resources beschikbaar te maken voor de enumeration Element:
     public static Context context;
 
@@ -65,15 +63,21 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickCalculate(View view) {
-        String givenElementAbbreviation = String.valueOf(elementEditText.getText());
+        String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText());
 
 
-        Element givenElement = Element.findElementByAbbreviation(givenElementAbbreviation);
+        Element givenElement = Element.findElementByAbbreviation(givenElementAbbreviationOrName);
 
-        // Als het element niet goed is:
         if(givenElement == null){
 
-            // Als er niets in het Element vak staat:
+            givenElement = Element.findElementByName(givenElementAbbreviationOrName);
+
+        }
+
+        // If the element is not right:
+        if(givenElement == null){
+
+            // If no element name of abbreviation is given:
             if(String.valueOf(elementEditText.getText()).equals("")){
                 DialogFragment customDialog = CustomDialog.createNew(
                         R.string.no_element_given_dialog_fragment_title,
@@ -81,7 +85,7 @@ public class MainActivity extends ActionBarActivity {
 
                 customDialog.show(getFragmentManager(),"theDialog");
 
-            // Als er wel iets in het Element vak staat:
+            // If so:
             } else {
                 DialogFragment customDialog = CustomDialog.createNew(
                         R.string.not_an_element_dialog_fragment_title,
