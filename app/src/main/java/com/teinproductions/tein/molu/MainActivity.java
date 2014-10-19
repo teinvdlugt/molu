@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
 
-        // Als het element goed is:
+        // If the Element is right:
         } else {
 
             elementEditText.setText(givenElement.getName());
@@ -103,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
                 Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
 
                 Double calculatedGram = givenElement.calculateGramWhenMolGiven(givenMol);
-                Integer calculatedParticles = givenElement.calculateParticlesWhenMolGiven(givenMol);
+                Double calculatedParticles = givenElement.calculateParticlesWhenMolGiven(givenMol);
 
                 gramEditText.setText(calculatedGram.toString());
                 particlesEditText.setText(calculatedParticles.toString());
@@ -115,7 +115,7 @@ public class MainActivity extends ActionBarActivity {
                 Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
 
                 Double calculatedMol = givenElement.calculateMolWhenGramGiven(givenGram);
-                Integer calculatedParticles = givenElement.calculateParticlesWhenMolGiven(calculatedMol);
+                Double calculatedParticles = givenElement.calculateParticlesWhenMolGiven(calculatedMol);
 
                 molEditText.setText(calculatedMol.toString());
                 particlesEditText.setText(calculatedParticles.toString());

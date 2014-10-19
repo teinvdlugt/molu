@@ -140,8 +140,8 @@ public enum Element {
         return givenMol * this.mass;
     }
 
-    public Integer calculateParticlesWhenMolGiven(Double givenMol){
-        return (int) (givenMol * nA);
+    public Double calculateParticlesWhenMolGiven(Double givenMol){
+        return givenMol * nA;
     }
 
     public Double calculateMolWhenGramGiven(Double givenGram){
