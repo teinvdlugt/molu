@@ -155,7 +155,7 @@ public enum Element {
 
     public static Element findElementByAbbreviation(String abbreviation){
         for(Element currentElement : Element.values()){
-            if(abbreviation.equals(currentElement.getAbbreviation())){
+            if(abbreviation.equalsIgnoreCase(currentElement.getAbbreviation())){
                 return currentElement;
             }
         }
@@ -165,12 +165,22 @@ public enum Element {
 
     public static Element findElementByName(String name){
         for(Element currentElement : Element.values()){
-            if(currentElement.getName().equals(name)) {
+            if(currentElement.getName().equalsIgnoreCase(name)) {
                 return currentElement;
             }
         }
 
         return null;
+    }
+
+    public static Element findElementByAbbreviationOrName(String nameOrAbbreviation){
+        Element foundElement;
+        foundElement = Element.findElementByAbbreviation(nameOrAbbreviation);
+        if(foundElement == null){
+            foundElement = Element.findElementByName(nameOrAbbreviation);
+        }
+
+        return foundElement;
     }
 
 

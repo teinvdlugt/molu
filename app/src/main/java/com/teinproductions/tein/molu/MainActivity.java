@@ -78,11 +78,7 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
     public Element onRequestElement() {
         String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText());
         Element requestedElement;
-        requestedElement = Element.findElementByAbbreviation(givenElementAbbreviationOrName);
-
-        if(requestedElement == null){
-            requestedElement = Element.findElementByName(givenElementAbbreviationOrName);
-        }
+        requestedElement = Element.findElementByAbbreviationOrName(givenElementAbbreviationOrName);
 
         if(requestedElement == null){
 
@@ -113,10 +109,5 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
 
             return requestedElement;
         }
-
-
-
-        // TODO make this function in Element enumeration
-
     }
 }
