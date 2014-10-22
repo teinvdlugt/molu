@@ -76,7 +76,7 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
 
     @Override
     public Element onRequestElement() {
-        String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText());
+        String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText()).trim();
         Element requestedElement;
         requestedElement = Element.findElementByAbbreviationOrName(givenElementAbbreviationOrName);
 
