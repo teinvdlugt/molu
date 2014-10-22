@@ -3,6 +3,7 @@ package com.teinproductions.tein.molu;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,10 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements CalculateFragment.OnCalculateClickListener{
 
-    EditText elementEditText,molEditText,gramEditText,particlesEditText;
-    TextView molarMassTextView;
+    EditText elementEditText;
 
     // Dit doe ik om de context en daarmee de Resources beschikbaar te maken voor de enumeration Element:
     public static Context context;
@@ -32,11 +32,14 @@ public class MainActivity extends ActionBarActivity {
         context = this;
 
         elementEditText = (EditText) findViewById(R.id.edit_text_1);
-        molEditText = (EditText) findViewById(R.id.mol_edit_text);
-        molarMassTextView = (TextView) findViewById(R.id.mass__amount_text_view);
-        gramEditText = (EditText) findViewById(R.id.gram_edit_text);
-        particlesEditText = (EditText) findViewById(R.id.particles_edit_text);
 
+
+        CalculateFragment calculateFragment = new CalculateFragment();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container, calculateFragment)
+                .commit();
 
     }
 
@@ -62,82 +65,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickCalculate(View view) {
-        String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText());
 
-
-        Element givenElement = Element.findElementByAbbreviation(givenElementAbbreviationOrName);
-
-        if(givenElement == null){
-
-            givenElement = Element.findElementByName(givenElementAbbreviationOrName);
-
-        }
-
-        // If the element is not right:
-        if(givenElement == null){
-
-            // If no element name of abbreviation is given:
-            if(String.valueOf(elementEditText.getText()).equals("")){
-                DialogFragment customDialog = CustomDialog.createNew(
-                        R.string.no_element_given_dialog_fragment_title,
-                        R.string.no_element_given_dialog_fragment_message);
-
-                customDialog.show(getFragmentManager(),"theDialog");
-
-            // If so:
-            } else {
-                DialogFragment customDialog = CustomDialog.createNew(
-                        R.string.not_an_element_dialog_fragment_title,
-                        R.string.not_an_element_dialog_fragment_message);
-
-                customDialog.show(getFragmentManager(),"theDialog");
-            }
-
-
-        // If the Element is right:
-        } else {
-
-            elementEditText.setText(givenElement.getName());
-            molarMassTextView.setText(givenElement.getMass().toString());
-
-            // If a value is given in molEditText:
-            if(!String.valueOf(molEditText.getText()).equals("")) {
-
-                Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
-
-                Double calculatedGram = givenElement.calculateGramWhenMolGiven(givenMol);
-                Double calculatedParticles = givenElement.calculateParticlesWhenMolGiven(givenMol);
-
-                gramEditText.setText(calculatedGram.toString());
-                particlesEditText.setText(calculatedParticles.toString());
-            }
-
-            // If a value is given in gramEditText:
-            else if (!String.valueOf(gramEditText.getText()).equals("")) {
-
-                Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
-
-                Double calculatedMol = givenElement.calculateMolWhenGramGiven(givenGram);
-                Double calculatedParticles = givenElement.calculateParticlesWhenMolGiven(calculatedMol);
-
-                molEditText.setText(calculatedMol.toString());
-                particlesEditText.setText(calculatedParticles.toString());
-            }
-
-            // If a value is given in particlesEditText:
-            else if (!String.valueOf(particlesEditText.getText()).equals("")){
-
-                Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
-
-                Double calculatedMol = givenElement.calculateMolWhenParticlesGiven(givenParticles);
-                Double calculatedGram = givenElement.calculateGramWhenMolGiven(calculatedMol);
-
-                molEditText.setText(calculatedMol.toString());
-                gramEditText.setText(calculatedGram.toString());
-            }
-        }
-    }
 
     public void startElementInfoActivity(){
 
@@ -146,4 +74,49 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    public Element onRequestElement() {
+        String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText());
+        Element requestedElement;
+        requestedElement = Element.findElementByAbbreviation(givenElementAbbreviationOrName);
+
+        if(requestedElement == null){
+            requestedElement = Element.findElementByName(givenElementAbbreviationOrName);
+        }
+
+        if(requestedElement == null){
+
+            // If no element name of abbreviation is given:
+            if(givenElementAbbreviationOrName.equals("")){
+                DialogFragment customDialog = CustomDialog.createNew(
+                        R.string.no_element_given_dialog_fragment_title,
+                        R.string.no_element_given_dialog_fragment_message);
+
+                customDialog.show(getFragmentManager(), "theDialog");
+
+                return null;
+
+            // If so:
+            } else {
+                DialogFragment customDialog = CustomDialog.createNew(
+                        R.string.not_an_element_dialog_fragment_title,
+                        R.string.not_an_element_dialog_fragment_message);
+
+                customDialog.show(getFragmentManager(),"theDialog");
+
+                return null;
+            }
+
+        } else {
+
+            elementEditText.setText(requestedElement.getName());
+
+            return requestedElement;
+        }
+
+
+
+        // TODO make this function in Element enumeration
+
+    }
 }
