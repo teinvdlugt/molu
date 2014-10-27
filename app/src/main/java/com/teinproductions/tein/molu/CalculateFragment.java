@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.text.DecimalFormat;
 
 public class CalculateFragment extends Fragment {
 
@@ -68,8 +69,10 @@ public class CalculateFragment extends Fragment {
             Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
             Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
 
-            gramEditText.setText(calculatedGram.toString());
-            particlesEditText.setText(calculatedParticles.toString());
+            DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+            gramEditText.setText(formatter.format(calculatedGram));
+            particlesEditText.setText(formatter.format(calculatedParticles));
         }
 
         // If a value is given in gramEditText:
@@ -80,8 +83,10 @@ public class CalculateFragment extends Fragment {
             Double calculatedMol = passedElement.calculateMolWhenGramGiven(givenGram);
             Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(calculatedMol);
 
-            molEditText.setText(calculatedMol.toString());
-            particlesEditText.setText(calculatedParticles.toString());
+            DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+            molEditText.setText(formatter.format(calculatedMol));
+            particlesEditText.setText(formatter.format(calculatedParticles));
         }
 
         // If a value is given in particlesEditText:
@@ -92,8 +97,10 @@ public class CalculateFragment extends Fragment {
             Double calculatedMol = passedElement.calculateMolWhenParticlesGiven(givenParticles);
             Double calculatedGram = passedElement.calculateGramWhenMolGiven(calculatedMol);
 
-            molEditText.setText(calculatedMol.toString());
-            gramEditText.setText(calculatedGram.toString());
+            DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+            molEditText.setText(formatter.format(calculatedMol));
+            gramEditText.setText(formatter.format(calculatedGram));
         }
     }
 
