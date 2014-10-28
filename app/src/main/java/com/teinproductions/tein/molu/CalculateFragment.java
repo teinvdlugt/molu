@@ -43,7 +43,7 @@ public class CalculateFragment extends Fragment {
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if(actionId == EditorInfo.IME_ACTION_GO){
                     Element passedElement = onCalculateClickListener.onRequestElement();
-                    if (passedElement == null) return false;
+                    if (passedElement == null || String.valueOf(molEditText.getText()).equals("")) return false;
 
                     molarMassTextView.setText(passedElement.getMass().toString());
 
@@ -68,7 +68,7 @@ public class CalculateFragment extends Fragment {
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if(actionId == EditorInfo.IME_ACTION_GO){
                     Element passedElement = onCalculateClickListener.onRequestElement();
-                    if (passedElement == null) return false;
+                    if (passedElement == null || String.valueOf(gramEditText.getText()).equals("")) return false;
 
                     molarMassTextView.setText(passedElement.getMass().toString());
 
@@ -93,7 +93,7 @@ public class CalculateFragment extends Fragment {
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if(actionId == EditorInfo.IME_ACTION_GO){
                     Element passedElement = onCalculateClickListener.onRequestElement();
-                    if (passedElement == null) return false;
+                    if (passedElement == null || String.valueOf(particlesEditText.getText()).equals("")) return false;
 
                     molarMassTextView.setText(passedElement.getMass().toString());
 
