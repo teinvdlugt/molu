@@ -6,6 +6,6 @@
     <item android:id="@+id/element_action_bar_item"
         android:title="@string/element_action_bar_string_title"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom|withText" />
 
 </menu>
