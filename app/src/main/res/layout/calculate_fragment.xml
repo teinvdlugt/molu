@@ -25,7 +25,8 @@
             android:layout_weight="4"
             android:layout_height="wrap_content"
             android:id="@+id/mol_edit_text"
-            style="@style/number_edit_style"/>
+            style="@style/number_edit_style"
+            android:imeOptions="actionGo"/>
 
     </LinearLayout>
 
@@ -75,7 +76,8 @@
             android:layout_weight="4"
             android:layout_height="wrap_content"
             android:id="@+id/gram_edit_text"
-            style="@style/number_edit_style"/>
+            style="@style/number_edit_style"
+            android:imeOptions="actionGo"/>
 
     </LinearLayout>
 
@@ -100,7 +102,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/particles_edit_text"
             style="@style/number_edit_style"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:imeOptions="actionGo"/>
 
     </LinearLayout>
 
