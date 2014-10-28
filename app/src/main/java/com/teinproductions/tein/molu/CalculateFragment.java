@@ -4,9 +4,11 @@ package com.teinproductions.tein.molu;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +37,81 @@ public class CalculateFragment extends Fragment {
         particlesEditText = (EditText) theView.findViewById(R.id.particles_edit_text);
         molarMassTextView = (TextView) theView.findViewById(R.id.mass_amount_text_view);
         calculateButton = (Button) theView.findViewById(R.id.calculate_button);
+
+        molEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if(actionId == EditorInfo.IME_ACTION_GO){
+                    Element passedElement = onCalculateClickListener.onRequestElement();
+                    if (passedElement == null) return false;
+
+                    molarMassTextView.setText(passedElement.getMass().toString());
+
+                    Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
+
+                    Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
+                    Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
+
+                    DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+                    gramEditText.setText(formatter.format(calculatedGram));
+                    particlesEditText.setText(formatter.format(calculatedParticles));
+
+                    return true;
+                } return false;
+            }
+        });
+
+
+        gramEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if(actionId == EditorInfo.IME_ACTION_GO){
+                    Element passedElement = onCalculateClickListener.onRequestElement();
+                    if (passedElement == null) return false;
+
+                    molarMassTextView.setText(passedElement.getMass().toString());
+
+                    Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
+
+                    Double calculatedMol = passedElement.calculateMolWhenGramGiven(givenGram);
+                    Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(calculatedMol);
+
+                    DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+                    molEditText.setText(formatter.format(calculatedMol));
+                    particlesEditText.setText(formatter.format(calculatedParticles));
+
+                    return true;
+                } return false;
+            }
+        });
+
+
+        particlesEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if(actionId == EditorInfo.IME_ACTION_GO){
+                    Element passedElement = onCalculateClickListener.onRequestElement();
+                    if (passedElement == null) return false;
+
+                    molarMassTextView.setText(passedElement.getMass().toString());
+
+                    Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
+
+                    Double calculatedMol = passedElement.calculateMolWhenParticlesGiven(givenParticles);
+                    Double calculatedGram = passedElement.calculateGramWhenMolGiven(calculatedMol);
+
+                    DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+                    molEditText.setText(formatter.format(calculatedMol));
+                    gramEditText.setText(formatter.format(calculatedGram));
+
+                    return true;
+                } return false;
+            }
+        });
+
         setUpButton();
 
         return theView;
