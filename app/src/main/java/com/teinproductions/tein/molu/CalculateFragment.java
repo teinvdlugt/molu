@@ -107,6 +107,7 @@ public class CalculateFragment extends Fragment {
             Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
             Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
 
+            // TODO make better formatting
             DecimalFormat formatter = new DecimalFormat("0.#####E0");
 
             gramEditText.setText(formatter.format(calculatedGram));

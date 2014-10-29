@@ -76,8 +76,6 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
         return super.onOptionsItemSelected(item);
     }
 
-
-
     public void startElementInfoActivity(){
 
         Intent intent  = new Intent(this,ElementInfoActivity.class);
@@ -85,14 +83,14 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
 
     }
 
-    @Override
-    public Element onRequestElement() {
+
+
+    private Element validateElement(){
         String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText()).trim();
-        Element requestedElement;
-        requestedElement = Element.findElementByAbbreviationOrName(givenElementAbbreviationOrName);
 
-        if(requestedElement == null){
+        Element element = Element.findElementByAbbreviationOrName(givenElementAbbreviationOrName);
 
+        if(element == null){
             // If no element name of abbreviation is given:
             if(givenElementAbbreviationOrName.equals("")){
                 DialogFragment customDialog = CustomDialog.createNew(
@@ -100,8 +98,6 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
                         R.string.no_element_given_dialog_fragment_message);
 
                 customDialog.show(getFragmentManager(), "theDialog");
-
-                return null;
 
             // If so:
             } else {
@@ -111,14 +107,22 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
 
                 customDialog.show(getFragmentManager(),"theDialog");
 
-                return null;
             }
 
-        } else {
+            return null;
 
-            elementEditText.setText(requestedElement.getName());
-
-            return requestedElement;
         }
+
+        elementEditText.setText(Element.findElementByAbbreviationOrName(String.valueOf(elementEditText.getText())).getName());
+
+        return element;
+
+    }
+
+    @Override
+    public Element onRequestElement() {
+
+        return validateElement();
+
     }
 }
