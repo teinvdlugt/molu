@@ -78,55 +78,22 @@ public class CalculateFragment extends Fragment {
 
     public void onClickCalculate() {
 
-        Element passedElement = onCalculateClickListener.onRequestElement();
-
-        if (passedElement == null) return;
-
-
-        molarMassTextView.setText(passedElement.getMass().toString());
-
         // If a value is given in molEditText:
         if (!String.valueOf(molEditText.getText()).equals("")) {
-
-            Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
-
-            Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
-            Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
-
-            DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-            gramEditText.setText(formatter.format(calculatedGram));
-            particlesEditText.setText(formatter.format(calculatedParticles));
+            calculateWithMol();
         }
 
         // If a value is given in gramEditText:
         else if (!String.valueOf(gramEditText.getText()).equals("")) {
-
-            Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
-
-            Double calculatedMol = passedElement.calculateMolWhenGramGiven(givenGram);
-            Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(calculatedMol);
-
-            DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-            molEditText.setText(formatter.format(calculatedMol));
-            particlesEditText.setText(formatter.format(calculatedParticles));
+            calculateWithGram();
         }
 
         // If a value is given in particlesEditText:
         else if (!String.valueOf(particlesEditText.getText()).equals("")) {
-
-            Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
-
-            Double calculatedMol = passedElement.calculateMolWhenParticlesGiven(givenParticles);
-            Double calculatedGram = passedElement.calculateGramWhenMolGiven(calculatedMol);
-
-            DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-            molEditText.setText(formatter.format(calculatedMol));
-            gramEditText.setText(formatter.format(calculatedGram));
+            calculateWithParticles();
         }
     }
+
 
     private boolean calculateWithMol() {
 
