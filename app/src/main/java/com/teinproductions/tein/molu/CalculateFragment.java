@@ -16,9 +16,9 @@ import java.text.DecimalFormat;
 
 public class CalculateFragment extends Fragment {
 
-    EditText molEditText, gramEditText, particlesEditText;
-    TextView molarMassTextView;
-    Button calculateButton;
+    private EditText molEditText, gramEditText, particlesEditText;
+    private TextView molarMassTextView;
+    private Button calculateButton;
 
 
     @Override
@@ -65,7 +65,7 @@ public class CalculateFragment extends Fragment {
 
     }
 
-    public void setUpButton() {
+    private void setUpButton() {
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class CalculateFragment extends Fragment {
 
     }
 
-    public void onClickCalculate() {
+    private void onClickCalculate() {
 
         // If a value is given in molEditText:
         if (!String.valueOf(molEditText.getText()).equals("")) {
@@ -193,7 +193,7 @@ public class CalculateFragment extends Fragment {
 
 
 
-    OnCalculateClickListener onCalculateClickListener;
+    private OnCalculateClickListener onCalculateClickListener;
 
     public interface OnCalculateClickListener {
 
