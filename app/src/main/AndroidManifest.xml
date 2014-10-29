@@ -21,6 +21,9 @@
         <activity android:name=".ElementInfoActivity"
             android:parentActivityName=".MainActivity"
             android:label="@string/Element_info_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teinproductions.tein.molu.MainActivity"/>
         </activity>
 
     </application>

@@ -24,8 +24,6 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO getActionBar().setHomeButtonEnabled(false);
-
         // De context voor beschikbaarheid van Resources buiten deze class initializen:
         context = this;
 

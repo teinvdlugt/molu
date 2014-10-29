@@ -20,6 +20,7 @@ public class ElementInfoActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_element_info);
 
+        // TODO getActionBar().setHomeButtonEnabled(true);
 
         listView = (ListView) findViewById(R.id.element_info_list_view);
 
