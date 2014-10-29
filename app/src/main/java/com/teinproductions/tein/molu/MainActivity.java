@@ -83,14 +83,29 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
         return super.onOptionsItemSelected(item);
     }
 
+
     public void startElementInfoActivity(){
 
         Intent intent  = new Intent(this,ElementInfoActivity.class);
-        startActivity(intent);
+
+        final int resultElement = 1;
+
+        startActivityForResult(intent, resultElement);
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        int result = data.getIntExtra(ElementInfoActivity.ELEMENTRESULTINT, -1);
+
+        if (result == -1) return;
+
+        Element resultElement = Element.values()[result];
+        elementEditText.setText(resultElement.getName());
+
+    }
 
     private Element validateElement(){
         String givenElementAbbreviationOrName = String.valueOf(elementEditText.getText()).trim();
