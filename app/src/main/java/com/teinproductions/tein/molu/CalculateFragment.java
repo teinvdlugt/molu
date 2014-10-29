@@ -115,11 +115,7 @@ public class CalculateFragment extends Fragment {
 
             return true;
         } catch (NumberFormatException e) {
-            CustomDialog customDialog = CustomDialog.createNew(
-                    R.string.unvalid_number_dialog_title,
-                    R.string.unvalid_number_dialog_message);
-
-            customDialog.show(getActivity().getFragmentManager(), "theDialog");
+            CustomDialog.invalidNumber(getActivity().getFragmentManager());
 
             return false;
         } catch (NullPointerException e){
@@ -146,11 +142,7 @@ public class CalculateFragment extends Fragment {
 
             return true;
         } catch (NumberFormatException e) {
-            CustomDialog customDialog = CustomDialog.createNew(
-                    R.string.unvalid_number_dialog_title,
-                    R.string.unvalid_number_dialog_message);
-
-            customDialog.show(getActivity().getFragmentManager(), "theDialog");
+            CustomDialog.invalidNumber(getActivity().getFragmentManager());
 
             return false;
         } catch (NullPointerException e){
@@ -178,11 +170,7 @@ public class CalculateFragment extends Fragment {
 
             return true;
         } catch (NumberFormatException e) {
-            CustomDialog customDialog = CustomDialog.createNew(
-                    R.string.unvalid_number_dialog_title,
-                    R.string.unvalid_number_dialog_message);
-
-            customDialog.show(getActivity().getFragmentManager(), "theDialog");
+            CustomDialog.invalidNumber(getActivity().getFragmentManager());
 
             return false;
         } catch (NullPointerException e){

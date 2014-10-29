@@ -93,19 +93,11 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
         if(element == null){
             // If no element name of abbreviation is given:
             if(givenElementAbbreviationOrName.equals("")){
-                DialogFragment customDialog = CustomDialog.createNew(
-                        R.string.no_element_given_dialog_fragment_title,
-                        R.string.no_element_given_dialog_fragment_message);
-
-                customDialog.show(getFragmentManager(), "theDialog");
+                CustomDialog.elementEmpty(getFragmentManager());
 
             // If so:
             } else {
-                DialogFragment customDialog = CustomDialog.createNew(
-                        R.string.not_an_element_dialog_fragment_title,
-                        R.string.not_an_element_dialog_fragment_message);
-
-                customDialog.show(getFragmentManager(),"theDialog");
+                CustomDialog.noElement(getFragmentManager());
 
             }
 

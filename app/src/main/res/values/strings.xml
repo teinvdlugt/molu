@@ -136,9 +136,11 @@
     <string name="livermorium">Livermorium</string>
     <string name="ununseptium">Ununseptium</string>
     <string name="ununoctium">Ununoctium</string>
+
+
     <string name="Element_info_activity_label">Elements</string>
     <string name="particles_text_view">Particles:</string>
-    <string name="unvalid_number_dialog_title">Unvalid number</string>
-    <string name="unvalid_number_dialog_message">Please enter a valid number</string>
+    <string name="invalid_number_dialog_title">Invalid number</string>
+    <string name="invalid_number_dialog_message">Please enter a valid number</string>
 
 </resources>
