@@ -20,18 +20,6 @@ public class CustomDialog extends DialogFragment {
         return dialog;
     }
 
-    public static CustomDialog createNew(String title, String message){
-
-        CustomDialog dialog = new CustomDialog();
-        Bundle args = new Bundle();
-        args.putString("title",title);
-        args.putString("message",message);
-        dialog.setArguments(args);
-
-        return dialog;
-    }
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 

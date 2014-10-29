@@ -41,74 +41,21 @@ public class CalculateFragment extends Fragment {
         molEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if(actionId == EditorInfo.IME_ACTION_GO){
-                    Element passedElement = onCalculateClickListener.onRequestElement();
-                    if (passedElement == null || String.valueOf(molEditText.getText()).equals("")) return false;
-
-                    molarMassTextView.setText(passedElement.getMass().toString());
-
-                    Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
-
-                    Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
-                    Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
-
-                    DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-                    gramEditText.setText(formatter.format(calculatedGram));
-                    particlesEditText.setText(formatter.format(calculatedParticles));
-
-                    return true;
-                } return false;
+                return actionId == EditorInfo.IME_ACTION_GO && calculateWithMol();
             }
         });
-
 
         gramEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if(actionId == EditorInfo.IME_ACTION_GO){
-                    Element passedElement = onCalculateClickListener.onRequestElement();
-                    if (passedElement == null || String.valueOf(gramEditText.getText()).equals("")) return false;
-
-                    molarMassTextView.setText(passedElement.getMass().toString());
-
-                    Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
-
-                    Double calculatedMol = passedElement.calculateMolWhenGramGiven(givenGram);
-                    Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(calculatedMol);
-
-                    DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-                    molEditText.setText(formatter.format(calculatedMol));
-                    particlesEditText.setText(formatter.format(calculatedParticles));
-
-                    return true;
-                } return false;
+                return actionId == EditorInfo.IME_ACTION_GO && calculateWithGram();
             }
         });
-
 
         particlesEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if(actionId == EditorInfo.IME_ACTION_GO){
-                    Element passedElement = onCalculateClickListener.onRequestElement();
-                    if (passedElement == null || String.valueOf(particlesEditText.getText()).equals("")) return false;
-
-                    molarMassTextView.setText(passedElement.getMass().toString());
-
-                    Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
-
-                    Double calculatedMol = passedElement.calculateMolWhenParticlesGiven(givenParticles);
-                    Double calculatedGram = passedElement.calculateGramWhenMolGiven(calculatedMol);
-
-                    DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-                    molEditText.setText(formatter.format(calculatedMol));
-                    gramEditText.setText(formatter.format(calculatedGram));
-
-                    return true;
-                } return false;
+                return actionId == EditorInfo.IME_ACTION_GO && calculateWithParticles();
             }
         });
 
@@ -179,6 +126,101 @@ public class CalculateFragment extends Fragment {
             molEditText.setText(formatter.format(calculatedMol));
             gramEditText.setText(formatter.format(calculatedGram));
         }
+    }
+
+    private boolean calculateWithMol() {
+
+        try {
+            Element passedElement = onCalculateClickListener.onRequestElement();
+
+            molarMassTextView.setText(passedElement.getMass().toString());
+
+            Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
+
+            Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
+            Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
+
+            DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+            gramEditText.setText(formatter.format(calculatedGram));
+            particlesEditText.setText(formatter.format(calculatedParticles));
+
+            return true;
+        } catch (NumberFormatException e) {
+            CustomDialog customDialog = CustomDialog.createNew(
+                    R.string.unvalid_number_dialog_title,
+                    R.string.unvalid_number_dialog_message);
+
+            customDialog.show(getActivity().getFragmentManager(), "theDialog");
+
+            return false;
+        } catch (NullPointerException e){
+            return false;
+        }
+    }
+
+    private boolean calculateWithGram() {
+
+        try {
+            Element passedElement = onCalculateClickListener.onRequestElement();
+
+            molarMassTextView.setText(passedElement.getMass().toString());
+
+            Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
+
+            Double calculatedMol = passedElement.calculateMolWhenGramGiven(givenGram);
+            Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(calculatedMol);
+
+            DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+            molEditText.setText(formatter.format(calculatedMol));
+            particlesEditText.setText(formatter.format(calculatedParticles));
+
+            return true;
+        } catch (NumberFormatException e) {
+            CustomDialog customDialog = CustomDialog.createNew(
+                    R.string.unvalid_number_dialog_title,
+                    R.string.unvalid_number_dialog_message);
+
+            customDialog.show(getActivity().getFragmentManager(), "theDialog");
+
+            return false;
+        } catch (NullPointerException e){
+            return false;
+        }
+
+    }
+
+    private boolean calculateWithParticles() {
+
+        try {
+            Element passedElement = onCalculateClickListener.onRequestElement();
+
+            molarMassTextView.setText(passedElement.getMass().toString());
+
+            Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
+
+            Double calculatedMol = passedElement.calculateMolWhenParticlesGiven(givenParticles);
+            Double calculatedGram = passedElement.calculateGramWhenMolGiven(calculatedMol);
+
+            DecimalFormat formatter = new DecimalFormat("0.#####E0");
+
+            molEditText.setText(formatter.format(calculatedMol));
+            gramEditText.setText(formatter.format(calculatedGram));
+
+            return true;
+        } catch (NumberFormatException e) {
+            CustomDialog customDialog = CustomDialog.createNew(
+                    R.string.unvalid_number_dialog_title,
+                    R.string.unvalid_number_dialog_message);
+
+            customDialog.show(getActivity().getFragmentManager(), "theDialog");
+
+            return false;
+        } catch (NullPointerException e){
+            return false;
+        }
+
     }
 
 
