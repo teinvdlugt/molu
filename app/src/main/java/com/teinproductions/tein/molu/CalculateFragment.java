@@ -107,11 +107,8 @@ public class CalculateFragment extends Fragment {
             Double calculatedGram = passedElement.calculateGramWhenMolGiven(givenMol);
             Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(givenMol);
 
-            // TODO make better formatting
-            DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-            gramEditText.setText(formatter.format(calculatedGram));
-            particlesEditText.setText(formatter.format(calculatedParticles));
+            gramEditText.setText(format(calculatedGram));
+            particlesEditText.setText(format(calculatedParticles));
 
             return true;
         } catch (NumberFormatException e) {
@@ -135,10 +132,8 @@ public class CalculateFragment extends Fragment {
             Double calculatedMol = passedElement.calculateMolWhenGramGiven(givenGram);
             Double calculatedParticles = passedElement.calculateParticlesWhenMolGiven(calculatedMol);
 
-            DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-            molEditText.setText(formatter.format(calculatedMol));
-            particlesEditText.setText(formatter.format(calculatedParticles));
+            molEditText.setText(format(calculatedMol));
+            particlesEditText.setText(format(calculatedParticles));
 
             return true;
         } catch (NumberFormatException e) {
@@ -163,10 +158,8 @@ public class CalculateFragment extends Fragment {
             Double calculatedMol = passedElement.calculateMolWhenParticlesGiven(givenParticles);
             Double calculatedGram = passedElement.calculateGramWhenMolGiven(calculatedMol);
 
-            DecimalFormat formatter = new DecimalFormat("0.#####E0");
-
-            molEditText.setText(formatter.format(calculatedMol));
-            gramEditText.setText(formatter.format(calculatedGram));
+            molEditText.setText(format(calculatedMol));
+            gramEditText.setText(format(calculatedGram));
 
             return true;
         } catch (NumberFormatException e) {
@@ -180,6 +173,19 @@ public class CalculateFragment extends Fragment {
     }
 
 
+    public static String format(Double d){
+
+        DecimalFormat formatterBig = new DecimalFormat("0.#####E0");
+        DecimalFormat formatterSmall = new DecimalFormat("0.#####");
+        DecimalFormat formatterInteger = new DecimalFormat("0");
+
+        if (d > 99999 || d < 0.00001){
+            return formatterBig.format(d);
+        } else {
+            return formatterSmall.format(d);
+        }
+
+    }
 
 
     private OnCalculateClickListener onCalculateClickListener;
