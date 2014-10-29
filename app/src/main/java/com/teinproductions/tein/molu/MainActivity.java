@@ -1,6 +1,5 @@
 package com.teinproductions.tein.molu;
 
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -36,7 +35,15 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId == EditorInfo.IME_ACTION_NEXT){
                     Element element = Element.findElementByAbbreviationOrName(String.valueOf(elementEditText.getText()));
-                    if(element == null) return false;
+                    if(element == null) {
+                        if(String.valueOf(elementEditText.getText()).equals("")){
+                            CustomDialog.elementEmpty(getFragmentManager());
+                        } else if(String.valueOf(elementEditText.getText()).equalsIgnoreCase("Exit") || String.valueOf(elementEditText.getText()).equalsIgnoreCase("I hate you")){
+                            finish();
+                        } else {
+                            CustomDialog.noElement(getFragmentManager());
+                        } return false;
+                    }
                     elementEditText.setText(element.getName());
                 }
 
