@@ -18,6 +18,8 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
     // Dit doe ik om de context en daarmee de Resources beschikbaar te maken voor de enumeration Element:
     public static Context context;
 
+    public static final int ELEMENT_INFO_ACTIVITY = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +88,7 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
 
         Intent intent  = new Intent(this,ElementInfoActivity.class);
 
-        final int resultElement = 1;
-
-        startActivityForResult(intent, resultElement);
+        startActivityForResult(intent, ELEMENT_INFO_ACTIVITY);
 
     }
 
@@ -96,12 +96,22 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        int result = data.getIntExtra(ElementInfoActivity.ELEMENTRESULTINT, -1);
+        if(data == null){
+            return;
+        }
 
-        if (result == -1) return;
+        switch(requestCode) {
+            case ELEMENT_INFO_ACTIVITY:
+                int result = data.getIntExtra(ElementInfoActivity.ELEMENTRESULTINT, 0);
 
-        Element resultElement = Element.values()[result];
-        elementEditText.setText(resultElement.getName());
+                Element resultElement = Element.values()[result];
+                elementEditText.setText(resultElement.getName());
+                break;
+            default:
+                break;
+        }
+
+
 
     }
 
