@@ -2,18 +2,24 @@ package com.teinproductions.tein.molu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements CalculateFragment.OnCalculateClickListener{
 
     EditText elementEditText;
+    DrawerLayout drawerLayout;
+    ListView navigationDrawerListView;
 
     // Dit doe ik om de context en daarmee de Resources beschikbaar te maken voor de enumeration Element:
     public static Context context;
@@ -58,6 +64,19 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
                 .beginTransaction()
                 .add(R.id.fragment_container, calculateFragment)
                 .commit();
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationDrawerListView = (ListView) findViewById(R.id.navigation_drawer_list_view);
+
+        navigationDrawerListView.setAdapter(new ElementListAdapter(this));
+        navigationDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Element clickedElement = Element.values()[position];
+                elementEditText.setText(clickedElement.getName());
+                drawerLayout.closeDrawer(navigationDrawerListView);
+            }
+        });
 
     }
 
