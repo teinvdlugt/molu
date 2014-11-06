@@ -100,7 +100,7 @@ public class CalculateFragment extends Fragment {
         try {
             Element passedElement = onCalculateClickListener.onRequestElement();
 
-            molarMassTextView.setText(passedElement.getMass().toString());
+            molarMassTextView.setText((new DecimalFormat().format(passedElement.getMass())));
 
             Double givenMol = Double.parseDouble(String.valueOf(molEditText.getText()));
 
@@ -125,7 +125,7 @@ public class CalculateFragment extends Fragment {
         try {
             Element passedElement = onCalculateClickListener.onRequestElement();
 
-            molarMassTextView.setText(passedElement.getMass().toString());
+            molarMassTextView.setText((new DecimalFormat().format(passedElement.getMass())));
 
             Double givenGram = Double.parseDouble(String.valueOf(gramEditText.getText()));
 
@@ -151,7 +151,7 @@ public class CalculateFragment extends Fragment {
         try {
             Element passedElement = onCalculateClickListener.onRequestElement();
 
-            molarMassTextView.setText(passedElement.getMass().toString());
+            molarMassTextView.setText((new DecimalFormat().format(passedElement.getMass())));
 
             Integer givenParticles = Integer.parseInt(String.valueOf(particlesEditText.getText()));
 
@@ -179,7 +179,9 @@ public class CalculateFragment extends Fragment {
         DecimalFormat formatterSmall = new DecimalFormat("0.#####");
         DecimalFormat formatterInteger = new DecimalFormat("0");
 
-        if (d > 99999 || d < 0.00001){
+        if (d == 0){
+            return "0";
+        } else if (d > 99999 || d < 0.00001) {
             return formatterBig.format(d);
         } else {
             return formatterSmall.format(d);

@@ -10,9 +10,9 @@ import android.widget.TextView;
 public class ElementListAdapter extends ArrayAdapter {
 
 
-    public ElementListAdapter(Context context){
+    public ElementListAdapter(Context context, String[] elementNames){
 
-        super(context,R.layout.element_info_list_layout);
+        super(context, R.layout.element_info_list_layout, elementNames);
 
     }
 
