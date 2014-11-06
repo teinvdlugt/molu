@@ -2,6 +2,7 @@ package com.teinproductions.tein.molu;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,20 @@ public class ElementListFragment extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mCallBack.onElementClick(position);
+            }
+        });
+    }
+
     public interface onElementClickListener{
-        public void onElementClick();
+        public void onElementClick(int position);
     }
 
     onElementClickListener mCallBack;

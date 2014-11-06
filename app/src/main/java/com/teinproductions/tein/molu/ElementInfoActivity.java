@@ -8,7 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-public class ElementInfoActivity extends ActionBarActivity{
+public class ElementInfoActivity extends ActionBarActivity
+                    implements ElementListFragment.onElementClickListener{
 
     public static String ELEMENTRESULTINT = "Index of the element that must be sent back to MainActivity";
 
@@ -41,4 +42,8 @@ public class ElementInfoActivity extends ActionBarActivity{
     }
 
 
+    @Override
+    public void onElementClick(int position) {
+        finishWithResult(position);
+    }
 }
