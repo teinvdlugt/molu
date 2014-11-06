@@ -3,10 +3,6 @@ package com.teinproductions.tein.molu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 public class ElementInfoActivity extends ActionBarActivity
                     implements ElementListFragment.onElementClickListener{
