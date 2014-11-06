@@ -44,7 +44,7 @@ public class ElementFragment extends Fragment{
         return theView;
     }
 
-    public ElementFragment newInstance(Element element){
+    public static ElementFragment newInstance(Element element){
         ElementFragment elementFragment = new ElementFragment();
         Bundle args = new Bundle();
         args.putSerializable("element", element);

@@ -184,6 +184,10 @@ public enum Element {
     }
 
 
+    public ElementFragment toFragment(){
+        return ElementFragment.newInstance(this);
+    }
+
 
     public String getName() {
         return name;
