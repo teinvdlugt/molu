@@ -6,7 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 
-public class ElementPagerActivity extends ActionBarActivity {
+public class ElementPagerActivity extends ActionBarActivity
+                    implements ElementListFragment.onElementClickListener{
 
     ViewPager theViewPager;
 
@@ -32,5 +33,10 @@ public class ElementPagerActivity extends ActionBarActivity {
 
         setContentView(theViewPager);
 
+    }
+
+    @Override
+    public void onElementClick(int position) {
+        theViewPager.setCurrentItem(position + 1, true);
     }
 }
