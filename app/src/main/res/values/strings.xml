@@ -142,5 +142,8 @@
     <string name="particles_text_view">Particles:</string>
     <string name="invalid_number_dialog_title">Invalid number</string>
     <string name="invalid_number_dialog_message">Please enter a valid number</string>
+    <string name="fragment_element_atomic_mass">Atomic Mass: </string>
+    <string name="fragment_element_abbreviation">Abbreviation: </string>
+    <string name="fragment_element_atomic_number">Atomic Number: </string>
 
 </resources>
