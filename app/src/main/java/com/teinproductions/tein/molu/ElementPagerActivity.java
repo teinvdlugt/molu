@@ -82,6 +82,15 @@ public class ElementPagerActivity extends ActionBarActivity
     }
 
     @Override
+    public void onBackPressed() {
+        if (theViewPager.getCurrentItem() == 0){
+            super.onBackPressed();
+        } else {
+            theViewPager.setCurrentItem(0);
+        }
+    }
+
+    @Override
     public void onElementClick(int position) {
         theViewPager.setCurrentItem(position + 1, true);
     }
