@@ -7,7 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 
 public class ElementPagerActivity extends ActionBarActivity
-                    implements ElementListFragment.onElementClickListener{
+                    implements ElementListFragment.onElementClickListener,
+                               CalculateFragment.OnCalculateClickListener{
 
     ViewPager theViewPager;
 
@@ -39,5 +40,10 @@ public class ElementPagerActivity extends ActionBarActivity
     @Override
     public void onElementClick(int position) {
         theViewPager.setCurrentItem(position + 1, true);
+    }
+
+    @Override
+    public Element onRequestElement() {
+        return Element.values()[theViewPager.getCurrentItem() - 1];
     }
 }
