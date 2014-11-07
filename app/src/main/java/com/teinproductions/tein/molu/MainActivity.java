@@ -150,4 +150,9 @@ public class MainActivity extends ActionBarActivity implements CalculateFragment
         return validateElement();
 
     }
+
+    public void openNewInterface(View view) {
+        Intent intent = new Intent(this, ElementPagerActivity.class);
+        startActivity(intent);
+    }
 }
