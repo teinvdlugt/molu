@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/atomic_number_text_view"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/blue_text"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"/>
 
@@ -40,7 +40,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/abbreviation_text_view"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="@color/green_text" />
 
 
 </LinearLayout>

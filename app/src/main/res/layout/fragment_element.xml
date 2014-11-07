@@ -57,7 +57,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:textColor="@android:color/holo_blue_bright"/>
+        android:textColor="@color/blue_text"/>
 
     <fragment
         android:layout_width="match_parent"
