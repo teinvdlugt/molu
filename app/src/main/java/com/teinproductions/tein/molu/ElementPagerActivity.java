@@ -44,6 +44,11 @@ public class ElementPagerActivity extends ActionBarActivity
             @Override
             public void onPageSelected(int position) {
                 invalidateOptionsMenu();
+                if(position == 0){
+                    getSupportActionBar().setTitle(R.string.Element_info_activity_label);
+                } else {
+                    getSupportActionBar().setTitle(Element.values()[position - 1].getName());
+                }
             }
 
             @Override

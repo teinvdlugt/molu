@@ -27,7 +27,7 @@
         </activity>
 
         <activity android:name=".ElementPagerActivity"
-            android:label="Pager Activity">
+            android:label="@string/Element_info_activity_label">
         </activity>
 
     </application>
