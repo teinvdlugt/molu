@@ -16,6 +16,7 @@ public class ElementPagerActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
 
         theViewPager = new ViewPager(this);
+        theViewPager.setId(0x1);
 
         theViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override

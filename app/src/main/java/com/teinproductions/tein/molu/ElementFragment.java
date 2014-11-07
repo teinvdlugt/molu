@@ -34,7 +34,7 @@ public class ElementFragment extends Fragment{
         elementNameTextView.setText(element.getName());
         atomicMassTextView.setText(new DecimalFormat().format(element.getMass()));
         abbreviationTextView.setText(element.getAbbreviation());
-        atomicNumberTextView.setText(element.getAtomicNumber());
+        atomicNumberTextView.setText(new DecimalFormat().format(element.getAtomicNumber()));
 
         getFragmentManager()
                 .beginTransaction()
