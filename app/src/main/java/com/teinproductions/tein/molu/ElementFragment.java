@@ -36,11 +36,6 @@ public class ElementFragment extends Fragment{
         abbreviationTextView.setText(element.getAbbreviation());
         atomicNumberTextView.setText(new DecimalFormat().format(element.getAtomicNumber()));
 
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragment_element_container, new CalculateFragment())
-                .commit();
-
         return theView;
     }
 

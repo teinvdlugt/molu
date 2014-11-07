@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -60,13 +61,15 @@
 
     </TableLayout>
 
-    <FrameLayout
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragment_element_table_layout"
-        android:id="@+id/fragment_element_container">
+        android:id="@+id/fragment_element_container"
+        android:name="com.teinproductions.tein.molu.CalculateFragment"
+        tools:layout="@layout/calculate_fragment">
 
-    </FrameLayout>
+    </fragment>
 
 
 </RelativeLayout>
