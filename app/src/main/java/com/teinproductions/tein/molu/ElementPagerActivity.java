@@ -24,7 +24,7 @@ public class ElementPagerActivity extends ActionBarActivity
             public Fragment getItem(int position) {
                 if(position == 0){
                     return new ElementListFragment();
-                } return Element.values()[position + 1].toFragment();
+                } return Element.values()[position - 1].toFragment();
             }
 
             @Override
