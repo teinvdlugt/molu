@@ -26,6 +26,10 @@
                 android:value="com.teinproductions.tein.molu.MainActivity"/>
         </activity>
 
+        <activity android:name=".ElementPagerActivity"
+            android:label="Pager Activity">
+        </activity>
+
     </application>
 
 </manifest>
