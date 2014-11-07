@@ -143,8 +143,8 @@
     <string name="invalid_number_dialog_title">Invalid number</string>
     <string name="invalid_number_dialog_message">Please enter a valid number</string>
     <string name="fragment_element_atomic_mass">Atomic Mass: </string>
-    <string name="fragment_element_abbreviation">Abbreviation: </string>
-    <string name="fragment_element_atomic_number">Atomic Number: </string>
+    <string name="fragment_element_abbreviation">Abbreviation:     </string>
+    <string name="fragment_element_atomic_number">Atomic Number:     </string>
     <string name="action_bar_pager_show_list">List</string>
 
 </resources>
