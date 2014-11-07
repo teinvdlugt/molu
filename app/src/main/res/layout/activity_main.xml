@@ -22,7 +22,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="openNewInterface"/>
+        android:onClick="openNewInterface"
+        android:text="@string/try_the_new_user_interface"
+        android:textAllCaps="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="15sp"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"

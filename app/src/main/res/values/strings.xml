@@ -146,5 +146,6 @@
     <string name="fragment_element_abbreviation">Abbreviation:     </string>
     <string name="fragment_element_atomic_number">Atomic Number:     </string>
     <string name="action_bar_pager_show_list">List</string>
+    <string name="try_the_new_user_interface">Try the new User Interface!</string>
 
 </resources>
