@@ -1,5 +1,6 @@
 package com.teinproductions.tein.molu;
 
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -13,10 +14,13 @@ public class ElementPagerActivity extends ActionBarActivity
                                CalculateFragment.OnCalculateClickListener{
 
     ViewPager theViewPager;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        actionBar = getSupportActionBar();
 
         theViewPager = new ViewPager(this);
         theViewPager.setId(0x1);
@@ -45,9 +49,11 @@ public class ElementPagerActivity extends ActionBarActivity
             public void onPageSelected(int position) {
                 invalidateOptionsMenu();
                 if(position == 0){
-                    getSupportActionBar().setTitle(R.string.Element_info_activity_label);
+                    actionBar.setTitle(R.string.Element_info_activity_label);
+                    actionBar.selectTab(null);
                 } else {
-                    getSupportActionBar().setTitle(Element.values()[position - 1].getName());
+                    actionBar.setTitle(Element.values()[position - 1].getName());
+                    actionBar.selectTab(actionBar.getTabAt(position - 1));
                 }
             }
 
@@ -56,6 +62,40 @@ public class ElementPagerActivity extends ActionBarActivity
 
             }
         });
+
+
+        actionBar = actionBar;
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        ActionBar.TabListener tabListener = new ActionBar.TabListener(){
+
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+                int position = tab.getPosition();
+                theViewPager.setCurrentItem(position + 1, true);
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+                int position = tab.getPosition();
+                theViewPager.setCurrentItem(position + 1, true);
+            }
+        };
+
+        for (int i = 0; i < Element.values().length; i++){
+        actionBar.addTab(
+                actionBar.newTab()
+                .setText(Element.values()[i].getName())
+                .setTabListener(tabListener));
+        }
+
+        theViewPager.setCurrentItem(0);
+        actionBar.selectTab(null);
 
         setContentView(theViewPager);
 
