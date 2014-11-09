@@ -142,10 +142,13 @@
     <string name="particles_text_view">Particles:</string>
     <string name="invalid_number_dialog_title">Invalid number</string>
     <string name="invalid_number_dialog_message">Please enter a valid number</string>
-    <string name="fragment_element_atomic_mass">Atomic Mass: </string>
-    <string name="fragment_element_abbreviation">Abbreviation:     </string>
-    <string name="fragment_element_atomic_number">Atomic Number:     </string>
+    <string name="fragment_element_atomic_mass">Atomic Mass:</string>
+    <string name="fragment_element_abbreviation">Abbreviation:</string>
+    <string name="fragment_element_atomic_number">Atomic Number:</string>
     <string name="action_bar_pager_show_list">List</string>
     <string name="try_the_new_user_interface">Try the new User Interface!</string>
+    <string name="year_of_disc_unknown">Unknown</string>
+    <string name="before_christ">B.C.</string>
+    <string name="year_of_discovery_text">Year of Discovery:</string>
 
 </resources>

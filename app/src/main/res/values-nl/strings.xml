@@ -147,5 +147,9 @@
     <string name="invalid_number_dialog_title">Ongeldig getal</string>
     <string name="too_many_arguments_message">Vul slechts één van de drie tekstvelden</string>
     <string name="try_the_new_user_interface">Probeer de nieuwe versie!</string>
+    <string name="year_of_disc_unknown">Onbekend</string>
+    <string name="before_christ">v.Chr.</string>
+    <string name="year_of_discovery_text">Jaar van Ontdekking:</string>
+
 
 </resources>

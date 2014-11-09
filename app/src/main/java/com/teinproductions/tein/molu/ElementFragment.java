@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 
 public class ElementFragment extends Fragment{
 
-    TextView atomicMassTextView, abbreviationTextView, atomicNumberTextView;
+    TextView atomicMassTextView, abbreviationTextView, atomicNumberTextView, yearOfDiscTextView;
 
     @Nullable
     @Override
@@ -23,6 +23,7 @@ public class ElementFragment extends Fragment{
         atomicMassTextView = (TextView) theView.findViewById(R.id.fragment_element_atomic_mass);
         abbreviationTextView = (TextView) theView.findViewById(R.id.fragment_element_abbreviation);
         atomicNumberTextView = (TextView) theView.findViewById(R.id.fragment_element_atomic_number);
+        yearOfDiscTextView = (TextView) theView.findViewById(R.id.fragment_element_year_of_disc);
 
         if(getArguments() == null){
             return theView;
@@ -33,6 +34,7 @@ public class ElementFragment extends Fragment{
         atomicMassTextView.setText(new DecimalFormat().format(element.getMass()) + "u");
         abbreviationTextView.setText(element.getAbbreviation());
         atomicNumberTextView.setText(new DecimalFormat().format(element.getAtomicNumber()));
+        yearOfDiscTextView.setText(element.getDiscYearString());
 
         return theView;
     }

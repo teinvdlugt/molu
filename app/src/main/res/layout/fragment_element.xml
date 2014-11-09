@@ -47,6 +47,22 @@
 
         </TableRow>
 
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/year_of_discovery_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/fragment_element_year_of_disc"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white"/>
+
+        </TableRow>
+
     </TableLayout>
 
     <TextView
