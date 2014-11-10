@@ -67,13 +67,14 @@ public class CalculateFragment extends Fragment {
 
     private void setUpButton() {
 
-        calculateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickCalculate();
-            }
-        });
-
+        if (calculateButton != null) {
+            calculateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickCalculate();
+                }
+            });
+        }
     }
 
     private void onClickCalculate() {

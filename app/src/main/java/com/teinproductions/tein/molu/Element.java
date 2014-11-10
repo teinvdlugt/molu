@@ -27,7 +27,7 @@ public enum Element {
     TITANIUM(MainActivity.context.getResources().getString(R.string.titanium),"Ti",47.867,22,1791),
     VANADIUM(MainActivity.context.getResources().getString(R.string.vanadium),"V",50.9415,23,1801),
     CHROMIUM(MainActivity.context.getResources().getString(R.string.chromium),"Cr",51.9961,24,1797),
-    MANGANESE(MainActivity.context.getResources().getString(R.string.manganese),"Mn",54.938,24,1774),
+    MANGANESE(MainActivity.context.getResources().getString(R.string.manganese),"Mn",54.938,25,1774),
     IRON(MainActivity.context.getResources().getString(R.string.iron),"Fe",55.845,26,-2000),
     COBALT(MainActivity.context.getResources().getString(R.string.cobalt),"Co",58.6934,27,1735),
     NICKEL(MainActivity.context.getResources().getString(R.string.nickel),"Ni",58.6934,28,1751),
